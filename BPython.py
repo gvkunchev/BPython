@@ -14,7 +14,7 @@ class Bpython_to_python:
         self._mapping = mapping
 
     def __call__(self, input_code):
-        """Translate Bpython to native Python code."""
+        """Translate BPython to native Python code."""
         code_bytes = BytesIO(input_code.encode("utf-8")).readlines()
         tokens = tokenize.tokenize(BytesIO(b"".join(code_bytes)).readline)
         py_tokens = []
@@ -31,7 +31,7 @@ class Bpython_to_python:
 
 
 class BpythonConsole(code.InteractiveConsole):
-    """Interactive console for Bpython."""
+    """Interactive console for BPython."""
 
     def __init__(self, *args, **kwargs):
         self._translator = Bpython_to_python(MAP)
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.file is None:
         BANNER = ("Ооо, къде одиш бе, нашио?\n"
-                  "Bpython е баш като Python, ма за ора естете.\n"
+                  "BPython е баш като Python, ма за ора естете.\n"
                   "На́пиши 'къ()' таа вииш къ а са опраиш.\n"
                   "На́пиши 'ae' таа излееш.")
         console = BpythonConsole(locals=locals())
